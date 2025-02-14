@@ -1,0 +1,21 @@
+services:
+  api:
+    build: .
+    container_name: api-feedbacks
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORTA=3000
+      - DATABASE_URL="mysql://root:root87603@mariadb_local:3306/sisco_bugreports/"
+      - URL_FRONTEND=${URL_FRONTEND}
+    volumes:
+      - ./uploads:/app/uploads
+    networks:
+      - shared_network
+
+networks:
+  shared_network:
+    driver: bridge
+    external: true
