@@ -3,8 +3,6 @@ import { validationResult } from 'express-validator';
 
 export default [
   (req: Request, res: Response, proximo: NextFunction) => {
-    // Sanitização de XSS
-    console.log(req.body);
     const sanitizar = (valor: any) => {
       if (typeof valor === 'string') {
         return valor.replace(/</g, '&lt;').replace(/>/g, '&gt;');
