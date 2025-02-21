@@ -4,7 +4,7 @@ services:
     container_name: api-feedbacks
     restart: unless-stopped
     ports:
-      - "3000:3000"
+      - "3000:3500"
     environment:
       - NODE_ENV=production
       - PORTA=3000

@@ -14,6 +14,8 @@ RUN yarn install --frozen-lockfile
 
 # Copia o restante do código
 COPY . .
+COPY .env-docker .env
+COPY prisma/schema_prod.prisma prisma/schema.prisma
 
 # Gera o Prisma Client e aplica as migrations
 RUN npx prisma generate
@@ -38,8 +40,6 @@ COPY --from=builder /app/uploads ./uploads
 
 # Expõe a porta
 EXPOSE 3000
-
-COPY .env .env
 
 # Comando de inicialização
 CMD ["yarn", "start:prod"]

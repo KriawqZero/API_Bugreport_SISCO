@@ -6,13 +6,11 @@
 
 generator client {
   provider = "prisma-client-js"
-  engineType = "binary"
-  binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
 }
 
 datasource db {
   provider = "mysql"
-  url      = env("DATABASE_URL")
+  url      = "mysql://root:root87603@mariadb_local:3306/sisco_bugreports?schema=public"
 }
 
 model Feedback {
