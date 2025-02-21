@@ -6,14 +6,16 @@ import validarFeedback from '../middleware/validadores/validarFeedback';
 
 const router = Router();
 
-router.post(
-  '/feedback',
+// Criar feedback
+router.post( '/feedback',
   feedbackRateLimiter,
   upload.array('anexos', 10),
   validarFeedback,
   FeedbackController.createFeedback
 );
 
+// Atualizar feedback
+router.patch('/feedback/:id', FeedbackController.updateFeedback);
 
 // Buscar feedbacks paginados
 router.get('/feedbacks', FeedbackController.getFeedbacks);

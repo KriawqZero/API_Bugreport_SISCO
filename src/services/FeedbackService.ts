@@ -24,7 +24,23 @@ class FeedbackService {
     });
   }
 
- // Buscar feedbacks paginados
+  // Atualizar feedback
+  static async updateFeedback(feedbackId: number, data: any) {
+    const feedback = await prisma.feedback.findUnique({
+      where: { id: feedbackId }
+    });
+
+    if (!feedback) {
+      return null;
+    }
+
+    return prisma.feedback.update({
+      where: { id: feedbackId },
+      data
+    });
+  }
+
+  // Buscar feedbacks paginados
   static async getFeedbacks(page: number = 1, limit: number = 10, orderByProp: any = 'desc') {
     const skip = (page - 1) * limit;
 

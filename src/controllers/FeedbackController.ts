@@ -13,6 +13,20 @@ class FeedbackController {
     }
   }
 
+  static async updateFeedback(req: Request, res: Response) {
+    try {
+      const { body } = req;
+      const feedback = await FeedbackService.updateFeedback(Number(req.params.id), body);
+      if (!feedback) {
+        res.status(404).json({ error: 'Feedback não encontrado' });
+        return;
+      }
+      res.status(202).json(feedback);
+    } catch (error) {
+      res.status(500).json({ error: 'Erro ao atualizar feedback' });
+    }
+  }
+
   // Buscar feedbacks paginados
   static async getFeedbacks(req: Request, res: Response) {
     try {
